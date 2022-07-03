@@ -1,4 +1,5 @@
 # Uncomplicated MySQL
+[![Build Status](https://github.com/josemmo/umysql/actions/workflows/ci.yml/badge.svg)](https://github.com/josemmo/umysql/actions)
 [![Latest Version](https://img.shields.io/packagist/v/josemmo/umysql)](https://packagist.org/packages/josemmo/umysql)
 [![Minimum PHP Version](https://img.shields.io/packagist/php-v/josemmo/umysql)](#installation)
 [![License](https://img.shields.io/github/license/josemmo/umysql)](LICENSE)

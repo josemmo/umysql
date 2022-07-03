@@ -1,0 +1,52 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  ci:
+    name: Continuous Integration
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental || false }}
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ['7.1', '7.2', '7.3', '7.4', '8.0', '8.1']
+        include:
+          - php-version: '8.2'
+            experimental: true
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_DATABASE: test
+          MYSQL_ROOT_PASSWORD: test
+        ports:
+          - 3306:3306
+    steps:
+      # Download code from repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Setup PHP
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: xdebug
+
+      # Setup Composer
+      - name: Setup Composer
+        run: composer validate --strict && composer install && vendor/bin/simple-phpunit --version
+
+      # Run static analyzer
+      - name: Run static analyzer
+        run: vendor/bin/psalm --output-format=github
+
+      # Run tests
+      - name: Run tests
+        env:
+          DB_HOSTNAME: '127.0.0.1'
+          DB_USERNAME: root
+          DB_PASSWORD: test
+          DB_DATABASE: test
+        run: vendor/bin/simple-phpunit --testdox
