@@ -98,10 +98,8 @@ class UMySQL {
         }
 
         try {
-            $this->conn = new mysqli();
-
             // Try to connect to database
-            @$this->conn->real_connect(
+            $this->conn = @new mysqli(
                 $opts['hostname'] ?? $opts['host'] ?? 'localhost',
                 $opts['username'] ?? $opts['user'] ?? 'root',
                 $opts['password'] ?? $opts['pass'] ?? '',
