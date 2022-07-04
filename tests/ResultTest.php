@@ -68,23 +68,13 @@ final class ResultTest extends BaseTest {
              ('5', 'five')"
         );
 
-        // Returns the first column of the next row by default or `false` if no more rows
+        // Returns the first column of the next row or `false` if no more rows
         $result = self::$db->query('SELECT symbol, word FROM unit_tests');
         $this->assertEquals('1', $result->fetchColumn());
         $this->assertEquals('2', $result->fetchColumn());
         $this->assertEquals('3', $result->fetchColumn());
         $this->assertEquals('4', $result->fetchColumn());
         $this->assertEquals('5', $result->fetchColumn());
-        $this->assertEquals(false, $result->fetchColumn());
-        $this->assertEquals(false, $result->fetchColumn());
-
-        // Accepts a column index parameter, returns `false` if index out of bounds
-        $result = self::$db->query('SELECT symbol, word FROM unit_tests');
-        $this->assertEquals('1', $result->fetchColumn(0));
-        $this->assertEquals('two', $result->fetchColumn(1));
-        $this->assertEquals('three', $result->fetchColumn(1));
-        $this->assertEquals(false, $result->fetchColumn(2));
-        $this->assertEquals('5', $result->fetchColumn(0));
         $this->assertEquals(false, $result->fetchColumn());
         $this->assertEquals(false, $result->fetchColumn());
 

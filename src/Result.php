@@ -3,7 +3,6 @@ namespace UMySQL;
 
 use mysqli;
 use mysqli_result;
-use ValueError;
 use const PHP_VERSION_ID;
 
 class Result {
@@ -53,30 +52,24 @@ class Result {
     }
 
     /**
-     * Fetch single column from next row
+     * Fetch first column from next row
      *
-     * @param  int               $index Column index
-     * @return string|null|false        Column value or `false` if no more rows or index out of bounds
+     * @return string|null|false Column value or `false` if no more rows
      */
-    public function fetchColumn(int $index = 0) {
+    public function fetchColumn() {
         if ($this->result === true) {
             return false;
         }
 
         // Are we running PHP >=8.1?
         if (PHP_VERSION_ID >= 80100) {
-            try {
-                $value = $this->result->fetch_column($index);
-                return ($value === null || $value === false) ? $value : (string) $value;
-            } catch (ValueError $e) {
-                // Column index out of bounds
-                return false;
-            }
+            $value = $this->result->fetch_column();
+            return ($value === null || $value === false) ? $value : (string) $value;
         }
 
         // Fallback to traditional approach
         $row = $this->result->fetch_row();
-        return isset($row[$index]) ? $row[$index] : false;
+        return $row ? $row[0] : false;
     }
 
     /**
