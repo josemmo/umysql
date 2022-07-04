@@ -99,6 +99,7 @@ class UMySQL {
 
         try {
             // Try to connect to database
+            /** @psalm-suppress UnusedPsalmSuppress, TooManyArguments, InaccessibleMethod */
             $this->conn = @new mysqli(
                 $opts['hostname'] ?? $opts['host'] ?? 'localhost',
                 $opts['username'] ?? $opts['user'] ?? 'root',
