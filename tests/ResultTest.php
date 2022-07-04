@@ -1,8 +1,6 @@
 <?php
 namespace UMySQL\Tests;
 
-use UMySQL\Result;
-
 final class ResultTest extends BaseTest {
     public static function setUpBeforeClass(): void {
         parent::setUpBeforeClass();
@@ -23,11 +21,6 @@ final class ResultTest extends BaseTest {
 
     protected function tearDown(): void {
         self::$db->query('TRUNCATE unit_tests');
-    }
-
-    public function testCanReturnResultInstances(): void {
-        $result = self::$db->query('SELECT 1 FROM DUAL');
-        $this->assertInstanceOf(Result::class, $result);
     }
 
     public function testCanFetchNextRow(): void {
