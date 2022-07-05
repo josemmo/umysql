@@ -19,6 +19,7 @@ abstract class BaseTest extends TestCase {
         if ($hostname === false || $username === false || $database === false) {
             self::markTestSkipped('Missing database connection environment variables');
         }
+        /** @psalm-suppress UnusedPsalmSuppress, InvalidArgument */
         self::$db = new UMySQL([
             'hostname' => $hostname,
             'username' => $username,
