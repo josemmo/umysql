@@ -17,7 +17,7 @@ First of all, make sure your environment meets the following requirements:
 
 Then, you should be able to install this library using Composer:
 ```
-composer install josemmo/umysql
+composer require josemmo/umysql
 ```
 
 ## Usage
