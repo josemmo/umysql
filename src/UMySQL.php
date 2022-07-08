@@ -38,7 +38,7 @@ use const PREG_SPLIT_DELIM_CAPTURE;
  * // SELECT * FROM movies
  * 
  * $db->parse('SELECT * FROM ?n WHERE username=?s AND points>=?i', 'users', 'nick', 100);
- * // SELECT * FROM `users` WHERE username='Kevin' AND points>=100
+ * // SELECT * FROM `users` WHERE username='nick' AND points>=100
  * 
  * $db->parse('SELECT * FROM products WHERE id IN (?a)', [10, null, 30]);
  * // SELECT * FROM products WHERE id IN ('10', NULL, '30')
