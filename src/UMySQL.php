@@ -173,7 +173,7 @@ class UMySQL {
 
         // Bind parameters to placeholders
         for ($i=0; $i<$numOfParams; $i++) {
-            /** @psalm-suppress UnsupportedReferenceUsage */
+            /** @psalm-suppress UnusedPsalmSuppress, UnsupportedReferenceUsage */
             $placeholder =& $parts[$i*2+1];
             $value =& $params[$i];
             switch ($placeholder) {
