@@ -27,8 +27,8 @@
     },
     "require-dev": {
         "symfony/phpunit-bridge": "*",
-        "vimeo/psalm": "^4.24",
-        "jetbrains/phpstorm-stubs": "^2022.1",
-        "psalm/plugin-phpunit": "^0.17.0"
+        "vimeo/psalm": "^4.30|^5.1",
+        "jetbrains/phpstorm-stubs": "^2022.2",
+        "psalm/plugin-phpunit": "^0.18"
     }
 }
