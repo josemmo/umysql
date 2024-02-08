@@ -40,7 +40,7 @@ jobs:
 
       # Run static analyzer
       - name: Run static analyzer
-        run: vendor/bin/psalm --output-format=github
+        run: vendor/bin/phpstan
 
       # Run tests
       - name: Run tests

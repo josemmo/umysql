@@ -99,7 +99,6 @@ class UMySQL {
 
         try {
             // Try to connect to database
-            /** @psalm-suppress UnusedPsalmSuppress, TooManyArguments, InaccessibleMethod */
             $this->conn = @new mysqli(
                 $opts['hostname'] ?? $opts['host'] ?? 'localhost',
                 $opts['username'] ?? $opts['user'] ?? 'root',
@@ -109,14 +108,14 @@ class UMySQL {
                 $opts['socket'] ?? null
             );
             $errNumber = $this->conn->connect_errno;
-            if ($errNumber) {
+            if ($errNumber != 0) {
                 throw new ConnectionException("[$errNumber] {$this->conn->connect_error}", $errNumber);
             }
 
             // Set charset
             @$this->conn->set_charset($opts['charset'] ?? 'utf8mb4');
             $errNumber = $this->conn->errno;
-            if ($errNumber) {
+            if ($errNumber != 0) {
                 throw new ConnectionException("[$errNumber] {$this->conn->error}", $errNumber);
             }
         } catch (mysqli_sql_exception $e) { // Handle failure in case of strict report mode (MYSQLI_REPORT_STRICT)
@@ -173,7 +172,6 @@ class UMySQL {
 
         // Bind parameters to placeholders
         for ($i=0; $i<$numOfParams; $i++) {
-            /** @psalm-suppress UnusedPsalmSuppress, UnsupportedReferenceUsage */
             $placeholder =& $parts[$i*2+1];
             $value =& $params[$i];
             switch ($placeholder) {
@@ -243,8 +241,8 @@ class UMySQL {
             return ($output === false) ? $input : $output;
         }
 
-        // Is input a parseable numeric string?
-        if (is_string($input) && preg_match('/^-?[0-9]+(\.([0-9]+)?)?$/', $input)) {
+        // Is input a parsable numeric string?
+        if (is_string($input) && preg_match('/^-?[0-9]+(\.([0-9]+)?)?$/', $input) === 1) {
             $output = strstr($input, '.', true);
             return ($output === false) ? $input : $output;
         }

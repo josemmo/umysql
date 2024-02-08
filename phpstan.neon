@@ -1,0 +1,10 @@
+parameters:
+  level: 9
+  paths:
+    - src
+    - tests
+  strictRules:
+    disallowedConstructs: false
+    strictCalls: false
+includes:
+  - vendor/phpstan/phpstan-strict-rules/rules.neon

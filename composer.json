@@ -26,9 +26,8 @@
         "ext-mysqli": "*"
     },
     "require-dev": {
+        "phpstan/phpstan": "^1.4|^1.10",
         "symfony/phpunit-bridge": "*",
-        "vimeo/psalm": "^4.30|^5.1",
-        "jetbrains/phpstorm-stubs": "^2022.2",
-        "psalm/plugin-phpunit": "^0.18"
+        "phpstan/phpstan-strict-rules": "^1.1|^1.5"
     }
 }

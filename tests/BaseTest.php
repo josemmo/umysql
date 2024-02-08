@@ -1,7 +1,6 @@
 <?php
 namespace UMySQL\Tests;
 
-use Closure;
 use PHPUnit\Framework\TestCase;
 use Throwable;
 use UMySQL\UMySQL;
@@ -19,7 +18,6 @@ abstract class BaseTest extends TestCase {
         if ($hostname === false || $username === false || $database === false) {
             self::markTestSkipped('Missing database connection environment variables');
         }
-        /** @psalm-suppress UnusedPsalmSuppress, InvalidArgument */
         self::$db = new UMySQL([
             'hostname' => $hostname,
             'username' => $username,
@@ -35,12 +33,13 @@ abstract class BaseTest extends TestCase {
     /**
      * Expect exception for all values
      *
-     * @psalm-param class-string        $exception Expected exception
-     * @psalm-param Closure(array):void $fn        Function to test values on
-     * @param       array               $values    Values to test
-     * @return      void
+     * @template T of mixed
+     * @param  class-string     $exception Expected exception
+     * @param  callable(T):void $fn        Function to test values on
+     * @param  T[]              $values    Values to test
+     * @return void
      */
-    protected function expectExceptionForAll(string $exception, Closure $fn, array $values): void {
+    protected function expectExceptionForAll(string $exception, callable $fn, array $values): void {
         foreach ($values as $value) {
             try {
                 $fn($value);

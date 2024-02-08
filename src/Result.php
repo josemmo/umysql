@@ -68,8 +68,9 @@ class Result {
         }
 
         // Fallback to traditional approach
+        /** @var string[]|null|false */
         $row = $this->result->fetch_row();
-        return $row ? $row[0] : false;
+        return ($row === null || $row === false) ? false : $row[0];
     }
 
     /**
