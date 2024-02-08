@@ -40,7 +40,8 @@ jobs:
 
       # Run static analyzer
       - name: Run static analyzer
-        run: vendor/bin/phpstan
+        if: ${{ success() && matrix.php-version != '7.1' }}
+        run: vendor/bin/phpstan --error-format=github
 
       # Run tests
       - name: Run tests

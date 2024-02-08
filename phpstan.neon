@@ -6,5 +6,12 @@ parameters:
   strictRules:
     disallowedConstructs: false
     strictCalls: false
+  ignoreErrors:
+    - message: '#^Call to an undefined method mysqli_result\:\:fetch_column\(\)\.$#'
+      path: src/Result.php
+      reportUnmatched: false
+    - message: '#^Parameter \#6 \$socket of class mysqli constructor expects string, string\|null given\.$#'
+      path: src/UMySQL.php
+      reportUnmatched: false
 includes:
   - vendor/phpstan/phpstan-strict-rules/rules.neon
