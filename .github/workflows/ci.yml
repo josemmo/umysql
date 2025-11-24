@@ -10,13 +10,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        php-version: ['7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5']
         include:
-          - php-version: '8.4'
+          - php-version: '8.6'
             experimental: true
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:5.7  # PHP 7 doesn't support authentication against MySQL 8
         env:
           MYSQL_DATABASE: test
           MYSQL_ROOT_PASSWORD: test
@@ -25,7 +25,7 @@ jobs:
     steps:
       # Download code from repository
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # Setup PHP
       - name: Setup PHP
