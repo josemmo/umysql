@@ -26,8 +26,8 @@
         "ext-mysqli": "*"
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.4|^1.10",
+        "phpstan/phpstan": "^1.4|^2.1",
         "symfony/phpunit-bridge": "*",
-        "phpstan/phpstan-strict-rules": "^1.1|^1.5"
+        "phpstan/phpstan-strict-rules": "^1.1|^2.0"
     }
 }

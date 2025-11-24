@@ -48,7 +48,7 @@ class Result {
         if ($this->result === true) {
             return false;
         }
-        return $this->result->fetch_assoc() ?? false;
+        return $this->result->fetch_assoc() ?? false; // @phpstan-ignore return.type
     }
 
     /**
@@ -69,7 +69,7 @@ class Result {
 
         // Fallback to traditional approach
         /** @var string[]|null|false */
-        $row = $this->result->fetch_row();
+        $row = $this->result->fetch_row(); // @phpstan-ignore varTag.type
         return ($row === null || $row === false) ? false : $row[0];
     }
 

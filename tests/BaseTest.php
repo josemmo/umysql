@@ -13,7 +13,7 @@ abstract class BaseTest extends TestCase {
     public static function setUpBeforeClass(): void {
         $hostname = getenv('DB_HOSTNAME');
         $username = getenv('DB_USERNAME');
-        $password = getenv('DB_PASSWORD') ?: '';
+        $password = getenv('DB_PASSWORD') ?: ''; // @phpstan-ignore ternary.shortNotAllowed
         $database = getenv('DB_DATABASE');
         if ($hostname === false || $username === false || $database === false) {
             self::markTestSkipped('Missing database connection environment variables');
@@ -45,10 +45,7 @@ abstract class BaseTest extends TestCase {
                 $fn($value);
                 $this->fail("Failed asserting that exception of type \"$exception\" is thrown.");
             } catch (Throwable $e) {
-                if (!is_a($e, $exception)) {
-                    throw $e;
-                }
-                $this->assertTrue(true);
+                $this->assertInstanceOf($exception, $e);
             }
         }
     }

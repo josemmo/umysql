@@ -4,9 +4,9 @@ parameters:
     - src
     - tests
   strictRules:
-    disallowedConstructs: false
-    strictCalls: false
+    disallowedEmpty: false
   ignoreErrors:
+    - '#Dynamic call to static method PHPUnit\\Framework\\.*#'
     - message: '#^Call to an undefined method mysqli_result\:\:fetch_column\(\)\.$#'
       path: src/Result.php
       reportUnmatched: false

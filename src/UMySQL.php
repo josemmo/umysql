@@ -108,14 +108,14 @@ class UMySQL {
                 $opts['socket'] ?? null
             );
             $errNumber = $this->conn->connect_errno;
-            if ($errNumber != 0) {
+            if ($errNumber !== 0) {
                 throw new ConnectionException("[$errNumber] {$this->conn->connect_error}", $errNumber);
             }
 
             // Set charset
             @$this->conn->set_charset($opts['charset'] ?? 'utf8mb4');
             $errNumber = $this->conn->errno;
-            if ($errNumber != 0) {
+            if ($errNumber !== 0) {
                 throw new ConnectionException("[$errNumber] {$this->conn->error}", $errNumber);
             }
         } catch (mysqli_sql_exception $e) { // Handle failure in case of strict report mode (MYSQLI_REPORT_STRICT)
@@ -164,9 +164,9 @@ class UMySQL {
         }
 
         // Validate number of placeholders
-        $numOfPlaceholders = floor(count($parts) / 2);
+        $numOfPlaceholders = (int) (count($parts) / 2);
         $numOfParams = count($params);
-        if ($numOfPlaceholders != $numOfParams) {
+        if ($numOfPlaceholders !== $numOfParams) {
             throw new ParseException("Expected $numOfPlaceholders parameters, found $numOfParams instead");
         }
 
