@@ -70,8 +70,8 @@ $db->parse('SELECT * FROM ?n WHERE username=?s AND points>=?i', 'users', 'nick',
 $db->parse('SELECT * FROM products WHERE id IN (?a)', [10, null, 30]);
 // SELECT * FROM products WHERE id IN ('10', NULL, '30')
 
-$db->parse('INSERT INTO metrics SET ?u', ['rtt' => 132.22, 'unit' => 'ms']);
-// INSERT INTO metrics SET `rtt`='132.22', `unit`='ms'
+$db->parse('INSERT INTO metrics SET ?u', ['rtt' => 132.22, 'unit' => 'ms', 'verified' => 1]);
+// INSERT INTO metrics SET `rtt`='132.22', `unit`='ms', `verified`=1
 
 $db->parse('SELECT * FROM places WHERE city=?s ORDER BY ?n ?p', 'London', 'name', 'ASC');
 // SELECT * FROM places WHERE city='London' ORDER BY `name` ASC

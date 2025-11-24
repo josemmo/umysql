@@ -334,7 +334,8 @@ class UMySQL {
         // Escape each map pair
         $output = [];
         foreach ($input as $key=>&$value) {
-            $output[] = $this->escapeIdentifier($key) . '=' . $this->escapeString($value);
+            $escapedValue = is_int($value) ? "$value" : $this->escapeString($value);
+            $output[] = $this->escapeIdentifier($key) . '=' . $escapedValue;
         }
 
         // Build map

@@ -196,16 +196,16 @@ final class ParsingTest extends BaseTest {
 
     public function testCanParseQueriesWithMapPlaceholders(): void {
         $this->assertEquals(
-            "UPDATE a SET `one`='1', `two`='2', `three`='3', `This is Null`=NULL",
+            "UPDATE a SET `one`=1, `two`='2', `three`='3.25', `This is Null`=NULL",
             self::$db->parse('UPDATE a SET ?u', [
                 'one' => 1,
                 'two' => '2',
-                'three' => 3,
+                'three' => 3.25,
                 'This is Null' => null,
             ])
         );
         $this->assertEquals(
-            "UPDATE a SET `0`='0', `1`='1', `2`='hey', `3`=NULL, `4`='a\\'b'",
+            "UPDATE a SET `0`=0, `1`=1, `2`='hey', `3`=NULL, `4`='a\\'b'",
             self::$db->parse('UPDATE a SET ?u', [0, 1, 'hey', null, "a'b"])
         );
     }
