@@ -40,7 +40,7 @@ jobs:
 
       # Run static analyzer
       - name: Run static analyzer
-        if: ${{ success() && matrix.php-version != '7.1' }}
+        if: ${{ success() && !contains(fromJSON('["7.1", "7.2", "7.3"]'), matrix.php-version) }}
         run: vendor/bin/phpstan --error-format=github
 
       # Run tests
